@@ -33,8 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
-
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
