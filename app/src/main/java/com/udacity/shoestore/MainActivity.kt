@@ -13,4 +13,34 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         Timber.i("onCreate")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.i("onRestart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.i("onDestroy")
+    }
 }
