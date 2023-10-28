@@ -27,7 +27,8 @@ class WelcomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_welcome,container,false)
         val args = WelcomeFragmentArgs.fromBundle(requireArguments())
-        binding.nameText.text = args.email
+        binding.email = args.email
+
         return binding.root
     }
 

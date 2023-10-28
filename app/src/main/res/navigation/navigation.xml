@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.udacity.shoestore.onboarding.WelcomeFragment"
-        android:label="WelcomeFragment" >
+        android:label="@string/welcome_fragment">
         <argument
             android:name="email"
             app:argType="string" />

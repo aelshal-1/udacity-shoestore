@@ -9,7 +9,9 @@
     <string name="enter_your_password">Enter Your Password</string>
     <string name="sign_up">Sign-up</string>
     <string name="sign_in">Sing-in</string>
-    <string name="welcome">Welcome</string>
     <string name="instructions">Instructions</string>
     <string name="login_title">Login</string>
+    <string name="welcome_fragment">Welcome</string>
+    <string name="hi">Hi, %s</string>
+    <string name="welcome">Welcome to udacity shoe store!\n\nStep into a world of style and comfort. Discover the perfect pair of shoes that complements your unique personality. Whether you\'re on the hunt for the latest trends, timeless classics, or sports-specific footwear, we\'ve got you covered.\n\nOur extensive collection offers a wide range of choices for every occasion and every season. From elegant formal shoes to casual sneakers, from durable athletic shoes to chic heels, we have something for everyone.\n\nExplore our app to:\n\nBrowse our vast selection of footwear.\nFind your perfect fit with our size guide.\nStay updated on the latest arrivals and exclusive offers.\nSave your favorite styles to your wishlist.\nConveniently place orders and track their status.\nEnjoy a hassle-free shopping experience with our secure payment options.\nAt udacity shoe store, we\'re dedicated to providing you with not just shoes, but a style statement. We\'re here to make your shopping experience easy and enjoyable.\n\nThank you for choosing us for your footwear needs. Happy shopping!\"\n\nFeel free to customize this message to suit your shoe store\'s brand and unique selling points.</string>
 </resources>
