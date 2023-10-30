@@ -76,24 +76,20 @@
 
         <Button
             android:id="@+id/signup_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/label_margin"
+            style="@style/button_style"
+            android:layout_marginStart="@dimen/margin_left"
             android:text="@string/sign_up"
             app:layout_constraintBaseline_toBaselineOf="@+id/signin_button"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/signin_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="128dp"
-            android:layout_marginEnd="@dimen/label_margin"
-            android:layout_marginBottom="@dimen/margin_bottom"
             android:text="@string/sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_edit" />
+            app:layout_constraintTop_toBottomOf="@+id/password_edit"
+            style="@style/button_style" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

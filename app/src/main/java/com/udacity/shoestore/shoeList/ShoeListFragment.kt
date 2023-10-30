@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 
@@ -49,6 +50,12 @@ class ShoeListFragment : Fragment() {
 
             binding.myLinearLayout.addView(myText)
         }
+
+        binding.detailsButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
+        )
+
+
         return binding.root
     }
 
