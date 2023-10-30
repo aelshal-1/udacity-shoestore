@@ -35,5 +35,13 @@
         <item name="android:padding">@dimen/label_padding</item>
     </style>
 
+    <style name="item_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/label_margin</item>
+        <item name="android:padding">@dimen/padding_label</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
 
 </resources>
