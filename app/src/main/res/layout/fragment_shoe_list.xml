@@ -24,9 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/label_margin"
             android:clickable="true"
             android:contentDescription="@string/show_details"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:src="@android:drawable/ic_input_add" />
     </LinearLayout>
 
 </layout>

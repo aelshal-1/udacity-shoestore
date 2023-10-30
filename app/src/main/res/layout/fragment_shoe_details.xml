@@ -59,6 +59,7 @@
             android:ems="10"
             android:hint="@string/enter_shoe_size"
             android:inputType="numberSigned"
+            android:text="@string/one"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/company_edit" />
 

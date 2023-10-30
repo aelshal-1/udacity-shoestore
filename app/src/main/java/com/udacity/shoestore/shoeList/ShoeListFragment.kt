@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +36,12 @@ class ShoeListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_shoe_list,container,false)
         viewModel = ViewModelProvider(this)[ShoeListViewModel::class.java]
 
+        val args = ShoeListFragmentArgs.fromBundle(requireArguments())
+        if(args.shoeName.isNotEmpty()){
+            viewModel.addShoe(args.shoeName,args.companyName,args.shoeSize,args.shoeDescription)
+        }
+
+
         var index =0
         for(item in viewModel.shoeList.value!!){
             val myText = TextView(this.context)
@@ -42,7 +49,14 @@ class ShoeListFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT,
             )
-            myText.text = item
+            myText.text = (buildString {
+                        append(item.name)
+                        append("|")
+                        append(item.company)
+                append("|")
+                append(item.size)
+
+    })
             myText.setTextAppearance(R.style.item_style)
             if(index % 2 == 0)
                 myText.setBackgroundColor(Color.CYAN)
