@@ -30,4 +30,5 @@
     <string name="save">Save</string>
     <string name="shoe_details">Shoe Details</string>
     <string name="one">1</string>
+    <string name="logout">Logout</string>
 </resources>
