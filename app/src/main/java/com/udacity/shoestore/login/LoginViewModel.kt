@@ -10,37 +10,45 @@ import java.util.regex.Pattern
 
 class LoginViewModel:ViewModel() {
     private val EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-    private val _isLoginSuccess = MutableLiveData<Boolean>()
+    private val _eventLoginFinish = MutableLiveData<Boolean>()
     val isLoginSuccess : LiveData<Boolean>
-        get() = _isLoginSuccess
+        get() = _eventLoginFinish
+
+
+    val email = MutableLiveData<String>()
+
+    val password =MutableLiveData<String>()
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage :LiveData<String>
         get() = _errorMessage
     init {
         Timber.i("LoginViewModel Created")
-        _isLoginSuccess.value =false
+        _eventLoginFinish.value =false
         _errorMessage.value = ""
     }
 
-    private fun isValidEmail(email: String?): Boolean {
+
+    private fun isValidEmail(): Boolean {
+        if(email.value == null)
+            return false
         val pattern: Pattern = Pattern.compile(EMAIL_PATTERN)
-        val matcher: Matcher = pattern.matcher(email)
+        val matcher: Matcher = pattern.matcher(email.value!!)
         return matcher.matches()
     }
-    fun login(email:String, password:String){
-        if(!isValidEmail(email)){
+    fun login(){
+        if(!isValidEmail()){
             _errorMessage.value ="Invalid Email"
         }
-        else if(password.isEmpty()){
+        else if(password.value!!.isEmpty()){
             _errorMessage.value ="Invalid Password"
         }else{
-            _isLoginSuccess.value = true
+            _eventLoginFinish.value = true
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Timber.i("LoginViewModel Cleared")
+    fun onLoginFinishComplete(){
+        _eventLoginFinish.value =false
     }
+
 }

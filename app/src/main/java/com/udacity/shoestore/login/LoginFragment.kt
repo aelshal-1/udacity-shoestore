@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 
@@ -33,34 +35,25 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-
-        // I don't know why this format failed to send email as args
-//        binding.signinButton.setOnClickListener (
-//            Navigation.createNavigateOnClickListener(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(binding.emailEdit.text.toString()))
-//        )
+        binding.loginViewModel = viewModel
+        binding.lifecycleOwner = this
 
 
-        binding.signinButton.setOnClickListener { view->
-            viewModel.login(binding.emailEdit.text.toString(),binding.passwordEdit.text.toString())
-            if(viewModel.isLoginSuccess.value == true){
-                view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(binding.emailEdit.text.toString()))
-            }else{
-                Toast.makeText(this.context,viewModel.errorMessage.value,Toast.LENGTH_LONG).show()
+        viewModel.isLoginSuccess.observe(viewLifecycleOwner, Observer { isSuccess->
+            if(isSuccess){
+                val email = viewModel.email.value
+                val action =LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(email!!)
+                findNavController().navigate(action)
+                viewModel.onLoginFinishComplete()
             }
-        }
+        })
 
-        binding.signupButton.setOnClickListener { view->
-            viewModel.login(binding.emailEdit.text.toString(),binding.passwordEdit.text.toString())
-            if(viewModel.isLoginSuccess.value == true){
-                view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(binding.emailEdit.text.toString()))
-            }else{
-                Toast.makeText(this.context,viewModel.errorMessage.value,Toast.LENGTH_LONG).show()
-            }
-        }
-
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage->
+            if(errorMessage.isNotEmpty())
+                Toast.makeText(this.context,errorMessage,Toast.LENGTH_LONG).show()
+        })
 
         return binding.root
     }
