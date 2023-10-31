@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -14,11 +15,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
+import com.udacity.shoestore.shoeList.ShoeListViewModel
 
 
 class ShoeDetailsFragment : Fragment() {
     private lateinit var binding: FragmentShoeDetailsBinding
     private lateinit var viewModel: ShowDetailsViewModel
+    private val shoeListViewMode : ShoeListViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {}
@@ -51,13 +54,8 @@ class ShoeDetailsFragment : Fragment() {
         // Save
         viewModel.saveEventComplete.observe(viewLifecycleOwner, Observer { isSave ->
             if (isSave) {
-                findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()
-                    .apply {
-                        shoeName = binding.shoeNameEdit.text.toString()
-                        companyName = binding.companyEdit.text.toString()
-                        shoeSize = binding.shoeSizeEdit.text.toString().toInt()
-                        shoeDescription = binding.detailsEdit.text.toString()
-                    })
+                shoeListViewMode.addShoe(binding.shoeNameEdit.text.toString(),binding.companyEdit.text.toString(), binding.shoeSizeEdit.text.toString(),binding.detailsEdit.text.toString())
+                findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
                 viewModel.onSaveEventComplete()
             }
         })

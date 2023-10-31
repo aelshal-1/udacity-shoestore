@@ -6,33 +6,43 @@ import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
 class ShoeListViewModel: ViewModel() {
-    fun addShoe(shoeName: String, companyName: String, shoeSize: Int, shoeDescription: String) {
+    fun addShoe(shoeName: String, companyName: String, shoeSize: String, shoeDescription: String) {
         _shoeList.value?.add(Shoe(shoeName,companyName,shoeSize,shoeDescription))
     }
 
     companion object {
         private val _shoeList = MutableLiveData<MutableList<Shoe>>().apply {
             val initList = mutableListOf(
-                Shoe("Sneakers", "Nike", 9, "Comfortable athletic shoes"),
-                Shoe("Loafers", "Gucci", 10, "Stylish and comfortable slip-ons"),
-                Shoe("High Heels", "Jimmy Choo", 8, "Elegant and fashionable heels"),
-                Shoe("Boots", "Timberland", 7, "Durable outdoor boots"),
-                Shoe("Flats", "Tory Burch", 8, "Casual and chic flat shoes"),
-                Shoe("Oxfords", "Cole Haan", 10, "Classic lace-up dress shoes"),
-                Shoe("Athletic Shoes", "Adidas", 9, "Performance sports shoes"),
-                Shoe("Espadrilles", "Toms", 8, "Casual canvas shoes with rope soles"),
-                Shoe("Moccasins", "Minnetonka", 7, "Soft and comfy slip-on shoes"),
-                Shoe("Pumps", "Christian Louboutin", 7, "Iconic red-soled high heels"),
-                Shoe("Flip-Flops", "Havaianas", 6, "Simple and stylish beach sandals"),
-                Shoe("Sandals", "Birkenstock", 8, "Orthopedic and comfortable sandals"),
-                Shoe("Wedge Heels", "Steve Madden", 9, "Heeled shoes with wedge soles"),
-                Shoe("Ankle Boots", "Dr. Martens", 7, "Sturdy leather boots"),
-                Shoe("Clogs", "Crocs", 6, "Lightweight and comfy clogs"),
-                Shoe("Wingtips", "Florsheim", 10, "Classic brogue-style dress shoes"),
-                Shoe("Chukka Boots", "Clarks", 8, "Casual and versatile boots"),
-                Shoe("Rain Boots", "Hunter", 7, "Waterproof boots for rainy days"),
-                Shoe("Thong Sandals", "Rainbow", 9, "Leather flip-flops with arch support"),
-                Shoe("Slingbacks", "Prada", 8, "Heeled shoes with an adjustable strap")
+                Shoe("Running Shoe 1", "Nike", "10", "Great for jogging"),
+                Shoe("Sneaker 1", "Adidas", "9", "Casual and comfortable"),
+                Shoe("Boots 1", "Timberland", "11", "Stylish and durable"),
+                Shoe("High Heels 1", "Jimmy Choo", "8", "Elegant for formal occasions"),
+                Shoe("Sneaker 2", "Puma", "9.5", "Sporty and comfortable"),
+                Shoe("Dress Shoe 1", "Clarks", "10.5", "Perfect for business meetings"),
+                Shoe("Sandals 1", "Birkenstock", "7", "Great for the beach"),
+                Shoe("Running Shoe 2", "New Balance", "10", "Supportive for running"),
+                Shoe("Loafer 1", "Gucci", "9", "Luxurious and stylish"),
+                Shoe("Boots 2", "Dr. Martens", "11", "Classic and rugged"),
+                Shoe("High Heels 2", "Christian Louboutin", "7.5", "Iconic red soles"),
+                Shoe("Sneaker 3", "Converse", "8", "Timeless and versatile"),
+                Shoe("Dress Shoe 2", "Ecco", "9.5", "Comfortable all day"),
+                Shoe("Sandals 2", "Teva", "7", "Perfect for outdoor adventures"),
+                Shoe("Running Shoe 3", "Saucony", "8.5", "Optimal support"),
+                Shoe("Loafer 2", "Tod's", "10", "Classic Italian design"),
+                Shoe("Boots 3", "Caterpillar", "12", "Workwear essentials"),
+                Shoe("High Heels 3", "Manolo Blahnik", "6.5", "Icon of style"),
+                Shoe("Sneaker 4", "Reebok", "11.5", "Great for workouts"),
+                Shoe("Dress Shoe 3", "Hugo Boss", "9", "Sophistication in every step"),
+                Shoe("Sandals 3", "Keen", "8", "Outdoor comfort and durability"),
+                Shoe("Running Shoe 4", "Brooks", "7.5", "For serious runners"),
+                Shoe("Loafer 3", "Salvatore Ferragamo", "10", "Italian elegance"),
+                Shoe("Boots 4", "UGG", "8", "Cozy and warm"),
+                Shoe("High Heels 4", "Stuart Weitzman", "7", "Timeless beauty"),
+                Shoe("Sneaker 5", "Fila", "9.5", "Retro style"),
+                Shoe("Dress Shoe 4", "Cole Haan", "11", "Modern and sleek"),
+                Shoe("Sandals 4", "Chaco", "7", "For outdoor enthusiasts"),
+                Shoe("Running Shoe 5", "Mizuno", "8", "Advanced cushioning"),
+                Shoe("Loafer 4", "Prada", "10.5", "Luxury at its finest")
             )
             value = initList
         }

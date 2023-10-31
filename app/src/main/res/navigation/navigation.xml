@@ -40,22 +40,6 @@
         <action
             android:id="@+id/action_shoeListFragment_to_shoeDetailsFragment"
             app:destination="@id/shoeDetailsFragment" />
-        <argument
-            android:name="shoe_name"
-            app:argType="string"
-            android:defaultValue=""/>
-        <argument
-            android:name="company_name"
-            app:argType="string"
-            android:defaultValue=""/>
-        <argument
-            android:name="shoe_size"
-            app:argType="integer"
-            android:defaultValue="0" />
-        <argument
-            android:name="shoe_description"
-            app:argType="string"
-            android:defaultValue=""/>
         <action
             android:id="@+id/action_shoeListFragment_to_loginFragment"
             app:destination="@id/loginFragment"

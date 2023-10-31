@@ -15,6 +15,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -28,7 +29,7 @@ import com.udacity.shoestore.databinding.FragmentShoeListBinding
 class ShoeListFragment : Fragment(), MenuProvider {
 
     private lateinit var binding: FragmentShoeListBinding
-    private lateinit var viewModel: ShoeListViewModel
+    private val viewModel: ShoeListViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,18 +44,23 @@ class ShoeListFragment : Fragment(), MenuProvider {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
-        viewModel = ViewModelProvider(this)[ShoeListViewModel::class.java]
+
 
         // for adding menu as setHasOptionMenu is deprecated
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        val args = ShoeListFragmentArgs.fromBundle(requireArguments())
-        if (args.shoeName.isNotEmpty()) {
-            viewModel.addShoe(args.shoeName, args.companyName, args.shoeSize, args.shoeDescription)
-        }
+        renderList()
+
+        binding.detailsButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
+        )
 
 
+        return binding.root
+    }
+
+    private fun renderList() {
         var index = 0
         for (item in viewModel.shoeList.value!!) {
             val myText = TextView(this.context)
@@ -77,13 +83,6 @@ class ShoeListFragment : Fragment(), MenuProvider {
 
             binding.myLinearLayout.addView(myText)
         }
-
-        binding.detailsButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
-        )
-
-
-        return binding.root
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
