@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--I have used Linear layout in welcome_layout.xml because
+it contains 3 views without complex constraints.  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,49 +11,35 @@
             type="String" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/label_padding">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/name_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:layout_marginTop="@dimen/label_margin"
             android:layout_marginEnd="@dimen/label_margin"
+            android:textAlignment="viewEnd"
             android:text="@{@string/hi(email)}"
-            android:textAlignment="textEnd"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/email" />
 
-
         <ScrollView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/label_margin"
-            app:layout_constraintBottom_toTopOf="@+id/instruction_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_text"
-            app:layout_constraintVertical_bias="0.39">
+            android:layout_weight="1">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/welcome_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/welcom_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/label_padding"
-                    android:text="@string/welcome"
-                    android:textAlignment="viewStart"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                android:padding="@dimen/label_padding"
+                android:text="@string/welcome"
+                android:textAlignment="viewStart"
+                android:textSize="20sp" />
         </ScrollView>
 
         <Button
@@ -59,8 +47,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/instructions"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginTop="@dimen/label_margin"
+            android:layout_marginEnd="@dimen/label_margin"
+            android:layout_gravity="end"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
 </layout>
