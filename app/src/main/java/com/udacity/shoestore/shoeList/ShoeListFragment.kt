@@ -1,6 +1,7 @@
 package com.udacity.shoestore.shoeList
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable.Orientation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -10,18 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 
@@ -61,27 +58,50 @@ class ShoeListFragment : Fragment(), MenuProvider {
     }
 
     private fun renderList() {
+        // TextView Layout
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+        )
+
         var index = 0
         for (item in viewModel.shoeList.value!!) {
-            val myText = TextView(this.context)
-            myText.layoutParams = LinearLayout.LayoutParams(
+            // Item Layout
+            val itemLinearLayout = LinearLayout(this.context)
+            itemLinearLayout.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT,
             )
-            myText.text = (buildString {
-                append(item.name)
-                append("|")
-                append(item.company)
-                append("|")
-                append(item.size)
-
-            })
-            myText.setTextAppearance(R.style.item_style)
+            itemLinearLayout.orientation=LinearLayout.HORIZONTAL
             if (index % 2 == 0)
-                myText.setBackgroundColor(Color.CYAN)
-            index++
+                itemLinearLayout.setBackgroundColor(Color.GREEN)
 
-            binding.myLinearLayout.addView(myText)
+            //shoeName
+            val shoeNameText = TextView(this.context)
+            shoeNameText.text = item.name
+            layoutParams.weight=3F
+            shoeNameText.layoutParams = layoutParams
+            shoeNameText.setTextAppearance(R.style.item_style)
+            itemLinearLayout.addView(shoeNameText)
+
+            //companyName
+            val companyNameText = TextView(this.context)
+            companyNameText.text = item.company
+            layoutParams.weight= 2F
+            companyNameText.layoutParams = layoutParams
+            companyNameText.setTextAppearance(R.style.item_style)
+            itemLinearLayout.addView(companyNameText)
+
+            //shoeSize
+            val shoeSizeText = TextView(this.context)
+            shoeSizeText.text = item.size
+            layoutParams.weight= 1F
+            shoeSizeText.layoutParams = layoutParams
+            shoeSizeText.setTextAppearance(R.style.item_style)
+            itemLinearLayout.addView(shoeSizeText)
+
+            binding.myLinearLayout.addView(itemLinearLayout)
+            index++
         }
     }
 
