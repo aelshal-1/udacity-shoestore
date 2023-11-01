@@ -31,8 +31,8 @@ class ShoeDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
+        //binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_details, container, false)
+        binding = FragmentShoeDetailsBinding.inflate(inflater,container,false)
 
         viewModel = ViewModelProvider(this)[ShowDetailsViewModel::class.java]
         binding.viewModel = viewModel

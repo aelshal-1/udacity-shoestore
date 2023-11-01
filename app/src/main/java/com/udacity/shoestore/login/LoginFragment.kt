@@ -35,7 +35,8 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
+       // binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
+        binding = FragmentLoginBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding.loginViewModel = viewModel
         binding.lifecycleOwner = this

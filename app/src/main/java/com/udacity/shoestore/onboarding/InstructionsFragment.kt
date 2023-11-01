@@ -30,7 +30,8 @@ class InstructionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_instructions,container,false)
+        //binding = DataBindingUtil.inflate(inflater,R.layout.fragment_instructions,container,false)
+        binding = FragmentInstructionsBinding.inflate(inflater,container,false)
 
         binding.showListButton.setOnClickListener (
             Navigation.createNavigateOnClickListener(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListFragment())

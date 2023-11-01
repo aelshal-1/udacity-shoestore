@@ -40,8 +40,8 @@ class ShoeListFragment : Fragment(), MenuProvider {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
-
+       // binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_list, container, false)
+        binding = FragmentShoeListBinding.inflate(inflater,container,false)
 
         // for adding menu as setHasOptionMenu is deprecated
         val menuHost: MenuHost = requireActivity()
