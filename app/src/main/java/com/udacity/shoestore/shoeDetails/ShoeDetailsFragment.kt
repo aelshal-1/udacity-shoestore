@@ -54,7 +54,10 @@ class ShoeDetailsFragment : Fragment() {
         // Save
         viewModel.saveEventComplete.observe(viewLifecycleOwner, Observer { isSave ->
             if (isSave) {
-                shoeListViewMode.addShoe(binding.shoeNameEdit.text.toString(),binding.companyEdit.text.toString(), binding.shoeSizeEdit.text.toString(),binding.detailsEdit.text.toString())
+                shoeListViewMode.addShoe(viewModel.shoeName.value!!,
+                    viewModel.companyName.value!!,
+                    viewModel.shoeSize.value!!,
+                    viewModel.shoeDetails.value!!)
                 findNavController().navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment())
                 viewModel.onSaveEventComplete()
             }
